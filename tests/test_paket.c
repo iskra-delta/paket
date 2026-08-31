@@ -111,8 +111,8 @@ static void test_serial_options(void)
     );
     expect_true(options.serial_port == 2U, "default SIO1B port");
     expect_true(
-        options.payload_bytes == PAKET_PAYLOAD_DEFAULT,
-        "default Squid payload"
+        options.payload_bytes == 64U,
+        "default Squid payload stays within Partner RX flow-control window"
     );
     expect_true(!options.has_communication, "selected port uses its default");
     expect_true(argument_count == 2, "default arguments preserved");

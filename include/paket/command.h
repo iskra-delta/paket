@@ -19,10 +19,13 @@
 #define PAKET_SERIAL_PORT_DEFAULT 2U
 
 /* Negotiated libsquid DATA payload offered by PAKET.  Sixteen preserves the
-   original wire-v2 frame size; 112 is the largest extended frame. */
+   original wire-v2 frame size; 112 is the largest extended frame.  Keep the
+   default DATA payload no larger than the Partner driver's 64-byte receive
+   ring; this avoids the reproducible flow-control stall seen with 112-byte
+   payloads during long binary transfers. */
 #define PAKET_PAYLOAD_MIN 16U
 #define PAKET_PAYLOAD_MAX 112U
-#define PAKET_PAYLOAD_DEFAULT PAKET_PAYLOAD_MAX
+#define PAKET_PAYLOAD_DEFAULT 64U
 
 typedef enum {
     PAKET_PARITY_NONE,
